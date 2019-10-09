@@ -27,7 +27,7 @@ export default (app: EggAppConfig) => {
   };
 
   const localIP = ip.address();
-  const domainWhiteList = [];
+  const domainWhiteList: string[] = [];
   [7001, 9000, 9001].forEach((port) => {
     domainWhiteList.push(`http://localhost:${port}`);
     domainWhiteList.push(`http://127.0.0.1:${port}`);

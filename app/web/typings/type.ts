@@ -1,14 +1,10 @@
-import ConfigStore from '../page/home/store/config';
+import { CSSProperties } from 'react';
 
 export interface TabProps {
   title: string;
   keywords: string;
   description: string;
   message: {
-    text: string
+    text: string;
   };
-}
-
-export interface StoreProps {
-  configStore?: ConfigStore
 }

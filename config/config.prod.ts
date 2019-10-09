@@ -1,13 +1,10 @@
 /**
- * 生产环境配置
+ * live configurations
  *
- * 最终生效的配置为 prod + default（前者覆盖后者）
+ * the final configurations would be:  prod + default（the previous one would overrider the following own）
  */
 
-
-import * as path from 'path';
-import * as fs from 'fs';
-export default function (app) {
+export default function(app) {
   const exports: any = {};
 
   return exports;

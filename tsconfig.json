@@ -4,23 +4,12 @@
   "compilerOptions": {
     "target": "es2017",
     "module": "commonjs",
+    "jsx": "react",
     /* Experimental Options */
-    "experimentalDecorators": true,        /* Enables experimental support for ES7 decorators. */
-    "emitDecoratorMetadata": true,         /* Enables experimental support for emitting type metadata for decorators. */
+    "experimentalDecorators": true /* Enables experimental support for ES7 decorators. */,
+    "emitDecoratorMetadata": true /* Enables experimental support for emitting type metadata for decorators. */,
     "strictNullChecks": false
   },
-  "include": [
-    "index.ts",
-    "app/**/*.ts",
-    "config/**/*.ts",
-    "mock/**/*.ts",
-    "test/**/*.ts"
-  ],
-  "exclude": [
-    "public",
-    "app/web",
-    "app/public",
-    "app/view",
-    "node_modules"
-  ]
+  "include": ["**/*.ts", "**/*.tsx"],
+  "exclude": ["public", "app/public", "node_modules"]
 }

@@ -1,7 +1,7 @@
 import * as path from 'path';
-import * as util from 'path';
+
 export default function() {
-  const skipExt = [ '.png', '.jpeg', '.jpg', '.ico', '.gif' ];
+  const skipExt = ['.png', '.jpeg', '.jpg', '.ico', '.gif'];
   return async (ctx, next) => {
     const start = new Date().getTime();
     await next;
@@ -24,7 +24,7 @@ export default function() {
       // const referrer = ctx.get('referrer') || '-';
       // const ua = ctx.get('user-agent') || '-';
       // const serverTime = ctx.response.get('X-Server-Response-Time') || '-';
-      // const message = util.format('[access] %s:%s - %s %s %s/%s %s %s %s %s %s', 
+      // const message = util.format('[access] %s:%s - %s %s %s/%s %s %s %s %s %s',
       // ...[ip, port, method, url, protocol, status, length, referrer, rs, serverTime, ua]);
       // ctx.logger.info(message);
     }

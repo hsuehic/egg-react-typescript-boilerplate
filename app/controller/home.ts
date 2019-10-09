@@ -3,9 +3,9 @@ export default class HomeController extends Controller {
   public async index() {
     const { ctx } = this;
     await ctx.render('home.js', {
-      title: '--Ant Design Tab--',
+      title: '--React, Redux, TypeScript, Egg, Antd--',
       keywords: 'react, server side render, ant design',
-      message: { text: 'Ant Design Tab Theme and Code Spliting' }
+      message: { text: 'Ant Design Tab Theme and Code Spliting' },
     });
   }
 }
