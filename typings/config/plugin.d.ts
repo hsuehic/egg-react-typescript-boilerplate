@@ -15,6 +15,8 @@ import 'egg-static';
 import 'egg-jsonp';
 import 'egg-view';
 import 'egg-view-react-ssr';
+import 'egg-aop';
+import 'egg-controller';
 import 'egg-cors';
 import 'egg-webpack';
 import 'egg-webpack-react';
@@ -34,6 +36,8 @@ declare module 'egg' {
     jsonp?: EggPluginItem;
     view?: EggPluginItem;
     reactssr?: EggPluginItem;
+    aop?: EggPluginItem;
+    controller?: EggPluginItem;
     cors?: EggPluginItem;
     webpack?: EggPluginItem;
     webpackreact?: EggPluginItem;

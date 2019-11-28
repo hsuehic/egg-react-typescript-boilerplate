@@ -20,6 +20,8 @@
     "@types/redux": "^3.6.0",
     "cross-env": "^5.0.0",
     "egg": "^2.1.0",
+    "egg-aop": "^0.5.3",
+    "egg-controller": "^0.3.31",
     "egg-cors": "^2.0.0",
     "egg-logger": "^1.5.0",
     "egg-scripts": "^2.6.0",
