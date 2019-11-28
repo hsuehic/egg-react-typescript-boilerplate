@@ -1,10 +1,11 @@
 'use strict';
 // https://www.yuque.com/easy-team/egg-react/config
 const path = require('path');
-const resolve = (filepath) => path.resolve(__dirname, filepath);
+const resolve = filepath => path.resolve(__dirname, filepath);
 module.exports = {
   entry: {
-    home: 'app/web/page/home/index.tsx'
+    home: 'app/web/page/home/index.tsx',
+    admin: 'app/web/page/admin/index.tsx',
   },
   module: {
     rules: [
@@ -16,14 +17,14 @@ module.exports = {
             modifyVars: {
               'primary-color': 'red',
               'link-color': '#1DA57A',
-              'border-radius-base': '2px'
-            }
-          }
-        }
-      }, 
+              'border-radius-base': '2px',
+            },
+          },
+        },
+      },
       {
-        typescript: true
-      }
+        typescript: true,
+      },
     ],
-  }
+  },
 };

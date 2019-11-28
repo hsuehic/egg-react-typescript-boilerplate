@@ -1,8 +1,9 @@
 import { applyMiddleware, compose, createStore, DeepPartial } from 'redux';
 import ThunkMiddleware from 'redux-thunk';
-import reducer from './reducer';
+import { homeReducer, adminReducer } from './reducer';
 
-import { State } from './redux';
+import { HomeState, AdminState } from '../../typings/common';
+import admin from '../page/admin';
 
 declare global {
   interface Window {
@@ -10,14 +11,27 @@ declare global {
   }
 }
 
-export function createReduxStore(
+export function createHomeReduxStore(
   isSSR: boolean,
-  preloadState: DeepPartial<State> = {},
+  preloadState: DeepPartial<HomeState> = {},
 ) {
   const composeEnhancers =
     (!isSSR && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) || compose;
   return createStore(
-    reducer,
+    homeReducer,
+    preloadState,
+    composeEnhancers(applyMiddleware(ThunkMiddleware)),
+  );
+}
+
+export function createAdminReduxStore(
+  isSSR,
+  preloadState: DeepPartial<AdminState> = {},
+) {
+  const composeEnhancers =
+    (!isSSR && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) || compose;
+  return createStore(
+    adminReducer,
     preloadState,
     composeEnhancers(applyMiddleware(ThunkMiddleware)),
   );

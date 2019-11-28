@@ -4,30 +4,28 @@ import { AppContainer } from 'react-hot-loader';
 import { Provider } from 'react-redux';
 import { BrowserRouter, StaticRouter } from 'react-router-dom';
 import Layout from '../../framework/layout';
-// https://github.com/gaearon/react-hot-loader/issues/525
 import { PageMetas } from '../../../typings/type';
-import { createHomeReduxStore } from '../../redux/store';
+import { createAdminReduxStore } from '../../redux/store';
 
-import HomeApp from './component/App';
-import { HomeState } from '../../../typings/common';
+import AdminApp from './component/App';
+import { AdminState } from '../../../typings/common';
 
-class App extends Component<PageMetas & HomeState, any> {
+class App extends Component<PageMetas & AdminState, any> {
   render() {
     const {
       location,
-      children,
       title,
       keywords,
       description,
-      ...state
+      children,
+      ...states
     } = this.props;
-
-    const store = createHomeReduxStore(true, state);
+    const store = createAdminReduxStore(true, states);
     return (
       <Provider store={store}>
-        <Layout {...this.props}>
+        <Layout title={title} keywords={keywords} description={description}>
           <StaticRouter context={{}} location={location}>
-            <HomeApp />
+            <AdminApp />
           </StaticRouter>
         </Layout>
       </Provider>
@@ -39,15 +37,16 @@ function bootstrap() {
   if (EASY_ENV_IS_NODE) {
     return App;
   }
+
   const state = window.__INITIAL_STATE__;
-  const store = createHomeReduxStore(true, state);
+  const store = createAdminReduxStore(false, state);
   const root = document.getElementById('app');
   if (EASY_ENV_IS_DEV) {
     ReactDOM.hydrate(
       <Provider store={store}>
         <AppContainer>
           <BrowserRouter>
-            <HomeApp />
+            <AdminApp />
           </BrowserRouter>
         </AppContainer>
       </Provider>,
@@ -60,7 +59,7 @@ function bootstrap() {
     ReactDOM.hydrate(
       <Provider store={store}>
         <BrowserRouter>
-          <HomeApp {...state} />
+          <AdminApp />
         </BrowserRouter>
       </Provider>,
       root,

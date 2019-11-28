@@ -10,6 +10,6 @@
     "emitDecoratorMetadata": true /* Enables experimental support for emitting type metadata for decorators. */,
     "strictNullChecks": false
   },
-  "include": ["**/*.ts", "**/*.tsx"],
+  "include": ["**/*.ts", "**/*.tsx", "global.d.ts", "app/react-app-env.d.ts"],
   "exclude": ["public", "app/public", "node_modules"]
 }

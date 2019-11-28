@@ -1,12 +1,13 @@
 import { Controller } from 'egg';
 import { route } from 'egg-controller';
+
 export default class HomeController extends Controller {
-  @route('/')
+  @route('/admin')
   public async index() {
     const { ctx } = this;
     const locale = ctx.cookies.get('locale') || 'en-US';
-    await ctx.render('home.js', {
-      title: 'Gismall Home',
+    await ctx.render('admin.js', {
+      title: 'Gismall Admin',
       keywords: 'gismall, react, server side render, ant design',
       description: 'Ant Design Tab Theme and Code Spliting',
       locale,
