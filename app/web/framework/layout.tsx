@@ -30,18 +30,7 @@ function Layout({ title, keywords, description, themeStyle, children }: Props) {
       <body style={{ ...themeStyle }}>
         <div id="app">{children}</div>
         <script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-app.js"></script>
-        <script>
-          var firebaseConfig = {
-            apiKey: "AIzaSyAOkK8BIniwj4zipGhQ-xhmMKfdiLLkrQM",
-            authDomain: "gismall.firebaseapp.com",
-            databaseURL: "https://gismall.firebaseio.com",
-            projectId: "gismall",
-            storageBucket: "gismall.appspot.com",
-            messagingSenderId: "589198067629",
-            appId: "1:589198067629:web:87e14d6e98f0ac26"
-          };
-          firebase.initializeApp(firebaseConfig);
-        </script>
+        <script src="/asset/js/firebase.js"></script>
       </body>
     </html>
   );

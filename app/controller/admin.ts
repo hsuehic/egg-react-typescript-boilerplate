@@ -1,7 +1,23 @@
 import { Controller } from 'egg';
 import { route } from 'egg-controller';
+import * as path from 'path';
+import * as admin from 'firebase-admin';
+import { Context } from 'egg';
 
 export default class HomeController extends Controller {
+  // Initialized firebase App when constructing
+  constructor(ctx: Context) {
+    super(ctx);
+    const serviceAccount = require(path.join(
+      this.app.baseDir,
+      'cert/gismall-firebase-adminsdk-cr05s-d4c02af13a.json'
+    ));
+    admin.initializeApp({
+      credential: admin.credential.cert(serviceAccount),
+      databaseURL: 'https://gismall.firebaseio.com',
+    });
+  }
+
   @route('/admin')
   public async index() {
     const { ctx } = this;
@@ -22,5 +38,75 @@ export default class HomeController extends Controller {
           'https://lh3.googleusercontent.com/-wB9ogfMmX5Q/AAAAAAAAAAI/AAAAAAAAAAA/ACHi3rf5zzOT6jsaazrdC0UaywEByS9dig.CMID/s192-c/photo.jpg',
       },
     });
+  }
+  @route({
+    url: '/api/users',
+    method: 'get',
+  })
+  public async getUsers() {
+    return this.listAllUsers();
+  }
+
+  @route({
+    url: '/api/users',
+    method: 'post',
+    validateMetaInfo: [
+      {
+        name: 'email',
+        rule: {
+          type: 'string',
+        },
+      },
+      {
+        name: 'password',
+        rule: {
+          type: 'string',
+        },
+      },
+    ],
+  })
+  public async createUser(
+    email: string,
+    password: string,
+    phoneNumber: string,
+    emailVerified?: boolean,
+    displayName?: string,
+    photoURL?: string
+  ) {
+    return await admin.auth().createUser({
+      uid: email,
+      email,
+      password,
+      phoneNumber,
+      emailVerified,
+      displayName,
+      photoURL,
+    });
+  }
+
+  @route({
+    url: '/api/users/:uid',
+    method: 'patch',
+  })
+  public async updateUser(uid: string, data: Partial<admin.auth.UserRecord>) {
+    return await admin.auth().updateUser(uid, data);
+  }
+
+  @route({
+    url: '/api/users/:uid',
+    method: 'delete',
+  })
+  public async deleteUser(uid: string) {
+    return await admin.auth().deleteUser(uid);
+  }
+
+  public async listAllUsers(nextPageToken?: string) {
+    const listUsersResult = await admin.auth().listUsers(100, nextPageToken);
+    let users = [...listUsersResult.users];
+    if (listUsersResult.pageToken) {
+      const remainUsers = await this.listAllUsers(listUsersResult.pageToken);
+      users = users.concat(remainUsers);
+    }
+    return users;
   }
 }

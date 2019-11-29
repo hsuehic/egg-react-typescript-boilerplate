@@ -23,8 +23,10 @@ index.js
 config/buildConfig.json
 config/manifest.json
 app/view/*
-!app/web/**/*.js
+**/*.js
+!app/web/asset/**/*.js
 !app/view/layout.html
 !app/view/README.md
 !app/view/.gitkeep
 package-lock.json
+cert

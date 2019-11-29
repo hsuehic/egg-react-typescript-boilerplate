@@ -30,6 +30,7 @@
     "egg-validate": "^1.0.0",
     "egg-view-react-ssr": "^2.3.2",
     "extend": "~3.0.0",
+    "firebase-admin": "^8.8.0",
     "history": "^4.7.2",
     "lodash": "^4.17.4",
     "mockjs": "^1.0.1-beta3",

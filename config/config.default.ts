@@ -5,17 +5,22 @@ export default function(app: EggAppConfig) {
   const exports: any = {};
 
   exports.siteFile = {
-    '/favicon.ico': fs.readFileSync(path.join(app.baseDir, 'app/web/asset/images/favicon.ico'))
+    '/favicon.ico': fs.readFileSync(
+      path.join(app.baseDir, 'app/web/asset/images/favicon.ico')
+    ),
   };
 
   exports.logger = {
     consoleLevel: 'DEBUG',
-    dir: path.join(app.baseDir, 'logs')
+    dir: path.join(app.baseDir, 'logs'),
   };
 
   exports.static = {
     prefix: '/public/',
-    dir: path.join(app.baseDir, 'public')
+    dir: [
+      path.join(app.baseDir, 'public'),
+      { prefix: '/asset/', dir: path.join(app.baseDir, 'app/web/asset') },
+    ],
   };
 
   exports.keys = '123456';
@@ -25,7 +30,7 @@ export default function(app: EggAppConfig) {
   ];
 
   exports.reactssr = {
-    layout: path.join(app.baseDir, 'app/web/view/layout.html')
+    layout: path.join(app.baseDir, 'app/web/view/layout.html'),
   };
 
   return exports;
