@@ -11,6 +11,8 @@ import { createHomeReduxStore } from '../../redux/store';
 import HomeApp from './component/App';
 import { HomeState } from '../../../typings/common';
 
+import './index.less';
+
 class App extends Component<PageMetas & HomeState, any> {
   render() {
     const {
@@ -51,7 +53,7 @@ function bootstrap() {
           </BrowserRouter>
         </AppContainer>
       </Provider>,
-      root,
+      root
     );
     if (module.hot) {
       module.hot.accept();
@@ -63,7 +65,7 @@ function bootstrap() {
           <HomeApp {...state} />
         </BrowserRouter>
       </Provider>,
-      root,
+      root
     );
   }
 }

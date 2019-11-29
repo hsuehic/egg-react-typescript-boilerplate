@@ -91,10 +91,10 @@ function App({ locale }: Props) {
             >
               <HeaderComp />
             </Header>
-            <Content>
+            <Content className={styles.container}>
               <Switch>
                 <Route path="/admin">
-                  <div className={styles.container}>Hello, admin.</div>
+                  <div>Hello, admin.</div>
                 </Route>
                 <Redirect path="*" to="/admin" />
               </Switch>

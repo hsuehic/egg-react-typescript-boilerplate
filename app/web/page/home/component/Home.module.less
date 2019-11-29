@@ -1,0 +1,32 @@
+@contentWidth: 1200px;
+
+.container {
+  box-sizing: border-box;
+}
+
+.header {
+  box-sizing: border-box;
+  padding: 0;
+}
+
+.header_inner {
+  margin: 0 auto;
+  width: @contentWidth;
+}
+
+.logo {
+  width: 120px;
+  height: 31px;
+  background: rgba(255, 255, 255, 0.2);
+  margin: 16px 28px 16px 0;
+  float: left;
+}
+
+.content {
+  margin: 0 auto;
+  width: @contentWidth;
+  min-height: 420px;
+  :global(.ant-menu-inline-collapsed) {
+    width: 220px;
+  }
+}

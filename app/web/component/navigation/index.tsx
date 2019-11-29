@@ -6,7 +6,12 @@ const { Item, SubMenu } = Menu;
 
 export default function Navigation() {
   return (
-    <Menu theme="dark" mode="inline" selectedKeys={['/admin/dashboard']}>
+    <Menu
+      theme="dark"
+      mode="inline"
+      selectedKeys={['/admin/dashboard']}
+      defaultOpenKeys={['/admin/users']}
+    >
       <Item key="/admin/dashboard">
         <Icon type="dashboard" />
         <span>

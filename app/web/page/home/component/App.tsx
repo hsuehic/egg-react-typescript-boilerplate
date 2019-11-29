@@ -1,14 +1,12 @@
 import React from 'react';
 
-import styles from './App.module.less';
 import { Switch, Route, Redirect } from 'react-router';
+import Home from './Home';
 
 export default function App() {
   return (
     <Switch>
-      <Route path="/">
-        <div className={styles.container}>Hello, world.</div>
-      </Route>
+      <Route path="/" component={Home} />
       <Redirect path="*" to="/" />
     </Switch>
   );
