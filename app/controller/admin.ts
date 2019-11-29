@@ -1,23 +1,8 @@
 import { Controller } from 'egg';
 import { route } from 'egg-controller';
-import * as path from 'path';
 import * as admin from 'firebase-admin';
-import { Context } from 'egg';
 
 export default class HomeController extends Controller {
-  // Initialized firebase App when constructing
-  constructor(ctx: Context) {
-    super(ctx);
-    const serviceAccount = require(path.join(
-      this.app.baseDir,
-      'cert/gismall-firebase-adminsdk-cr05s-d4c02af13a.json'
-    ));
-    admin.initializeApp({
-      credential: admin.credential.cert(serviceAccount),
-      databaseURL: 'https://gismall.firebaseio.com',
-    });
-  }
-
   @route('/admin')
   public async index() {
     const { ctx } = this;

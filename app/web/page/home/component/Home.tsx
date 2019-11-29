@@ -1,5 +1,6 @@
 import React from 'react';
 import { Layout, Menu, Breadcrumb, Icon } from 'antd';
+import cx from 'classnames';
 
 import styles from './Home.module.less';
 
@@ -83,6 +84,8 @@ export default function Home() {
           </aside>
           <div className={styles.main}>Content</div>
         </div>
+        <div className={cx(styles.section, styles.bannar)}></div>
+        <div className={cx(styles.section, styles.category)}></div>
       </Content>
       <Footer style={{ textAlign: 'center' }}>
         Ant Design ©2018 Created by Ant UED
