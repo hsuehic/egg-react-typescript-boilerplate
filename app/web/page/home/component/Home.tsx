@@ -30,15 +30,10 @@ export default function Home() {
           <Breadcrumb.Item>List</Breadcrumb.Item>
           <Breadcrumb.Item>App</Breadcrumb.Item>
         </Breadcrumb>
-        <Layout style={{ padding: '24px 0', background: '#fff' }}>
-          <Sider
-            collapsed={true}
-            collapsedWidth={220}
-            width={220}
-            style={{ background: '#fff' }}
-          >
+        <div className={styles.section}>
+          <aside className={styles.side}>
             <Menu
-              mode="inline"
+              mode="vertical"
               defaultSelectedKeys={['1']}
               style={{ height: '100%' }}
             >
@@ -85,11 +80,9 @@ export default function Home() {
                 <Menu.Item key="12">option12</Menu.Item>
               </SubMenu>
             </Menu>
-          </Sider>
-          <Content style={{ padding: '0 24px', minHeight: 280 }}>
-            Content
-          </Content>
-        </Layout>
+          </aside>
+          <div className={styles.main}>Content</div>
+        </div>
       </Content>
       <Footer style={{ textAlign: 'center' }}>
         Ant Design ©2018 Created by Ant UED
