@@ -4,7 +4,7 @@ import cx from 'classnames';
 
 import styles from './Home.module.less';
 
-const { Content, Footer, Header, Sider } = Layout;
+const { Content, Footer, Header } = Layout;
 const { SubMenu } = Menu;
 
 export default function Home() {
@@ -13,6 +13,8 @@ export default function Home() {
       <Header className={styles.header}>
         <div className={styles.header_inner}>
           <div className={styles.logo} />
+
+          <div className={styles.login}>Login</div>
           <Menu
             theme="dark"
             mode="horizontal"
