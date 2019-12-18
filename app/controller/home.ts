@@ -1,8 +1,7 @@
 import { Controller } from 'egg';
 import { route } from 'egg-controller';
 export default class HomeController extends Controller {
-  @route('/')
-  public async index() {
+  public async renderWithMeta<T extends {}>(state: T) {
     const { ctx } = this;
     const locale = ctx.cookies.get('locale') || 'en-US';
     await ctx.render('home.js', {
@@ -20,6 +19,12 @@ export default class HomeController extends Controller {
         picture:
           'https://lh3.googleusercontent.com/-wB9ogfMmX5Q/AAAAAAAAAAI/AAAAAAAAAAA/ACHi3rf5zzOT6jsaazrdC0UaywEByS9dig.CMID/s192-c/photo.jpg',
       },
+      ...state,
     });
+  }
+
+  @route('/')
+  public async index() {
+    await this.renderWithMeta({});
   }
 }

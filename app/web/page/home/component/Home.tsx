@@ -1,20 +1,71 @@
-import React from 'react';
-import { Layout, Menu, Breadcrumb, Icon } from 'antd';
+import React, { useState } from 'react';
+import { Layout, Menu, Breadcrumb, Icon, Avatar } from 'antd';
 import cx from 'classnames';
+
+import firebase from 'firebase';
 
 import styles from './Home.module.less';
 
 const { Content, Footer, Header } = Layout;
 const { SubMenu } = Menu;
 
+function showGoogleLoginPopup(
+  successCallback?: (credential: firebase.auth.UserCredential) => void
+) {
+  firebase
+    .auth()
+    .signInWithPopup(new firebase.auth.GoogleAuthProvider())
+    .then(
+      credential => {
+        if (successCallback) {
+          successCallback(credential);
+        }
+      },
+      (reason: any) => {
+        console.error(reason);
+      }
+    );
+}
+
 export default function Home() {
+  const [
+    userCredential,
+    setUserCredential,
+  ] = useState<firebase.auth.UserCredential | null>(null);
   return (
     <Layout className={styles.container}>
       <Header className={styles.header}>
         <div className={styles.header_inner}>
           <div className={styles.logo} />
 
-          <div className={styles.login}>Login</div>
+          {userCredential ? (
+            <div className={styles.right}>
+              <Avatar
+                className={styles.avatar}
+                size="small"
+                src={userCredential.user?.photoURL || ''}
+              />
+              <span className={styles.displayName}>
+                {userCredential.user?.displayName}
+              </span>
+            </div>
+          ) : (
+            <div className={styles.right}>
+              :
+              <div
+                className={styles.login}
+                onClick={() => {
+                  showGoogleLoginPopup(
+                    (credential: firebase.auth.UserCredential) => {
+                      setUserCredential(credential);
+                    }
+                  );
+                }}
+              >
+                Login
+              </div>
+            </div>
+          )}
           <Menu
             theme="dark"
             mode="horizontal"
@@ -84,13 +135,13 @@ export default function Home() {
               </SubMenu>
             </Menu>
           </aside>
-          <div className={styles.main}>Content</div>
+          <div className={styles.main}></div>
         </div>
         <div className={cx(styles.section, styles.bannar)}></div>
         <div className={cx(styles.section, styles.category)}></div>
       </Content>
       <Footer style={{ textAlign: 'center' }}>
-        Ant Design ©2018 Created by Ant UED
+        FireUI ©2018 Created by Richard
       </Footer>
     </Layout>
   );

@@ -98,9 +98,17 @@ export default class UserService extends Service {
    * synchronous users
    */
   public async syncUsers() {
-    const listUsersResult = await admin.auth().listUsers(1000);
+    const pageSize = 1000;
+    let listUsersResult = await admin.auth().listUsers(pageSize);
+    let users = [...listUsersResult.users];
+    while (listUsersResult.pageToken) {
+      listUsersResult = await admin
+        .auth()
+        .listUsers(pageSize, listUsersResult.pageToken);
+      users = [...users, ...listUsersResult.users];
+    }
     const db = admin.firestore();
-    listUsersResult.users.map(async (user: admin.auth.UserRecord) => {
+    users.map(async (user: admin.auth.UserRecord) => {
       await db
         .collection('users')
         .doc(user.uid)
