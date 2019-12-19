@@ -2,6 +2,7 @@
   "env": {
     "node": {
       "presets": [
+        "@babel/preset-typescript",
         "@babel/preset-react",
         [
           "@babel/preset-env",
@@ -22,6 +23,7 @@
     },
     "web": {
       "presets": [
+        "@babel/preset-typescript",
         "@babel/preset-react",
         [
           "@babel/preset-env",
