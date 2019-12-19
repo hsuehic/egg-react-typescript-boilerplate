@@ -51,7 +51,6 @@ export default function Home() {
             </div>
           ) : (
             <div className={styles.right}>
-              :
               <div
                 className={styles.login}
                 onClick={() => {
